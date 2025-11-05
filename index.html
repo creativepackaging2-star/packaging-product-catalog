@@ -92,8 +92,8 @@
         }
 
         .nav-link:hover {
-            background: var(--background);
-            color: var(--text);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
 
         /* Main Content */
@@ -187,7 +187,7 @@
 
         .table-header {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 2fr 1fr;
+            grid-template-columns: 2fr 1fr 3fr 1fr;
             gap: 1rem;
             padding: 1.5rem;
             background: linear-gradient(135deg, #f8fafc, #f1f5f9);
@@ -201,7 +201,7 @@
 
         .table-row {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 2fr 1fr;
+            grid-template-columns: 2fr 1fr 3fr 1fr;
             gap: 1rem;
             padding: 1.5rem;
             border-bottom: 1px solid var(--border);
@@ -248,23 +248,32 @@
             font-weight: 500;
         }
 
-        .product-specs {
-            font-size: 0.9rem;
-            color: var(--text);
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
         }
 
         .spec-item {
-            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            padding: 0.5rem;
+            background: var(--background);
+            border-radius: 6px;
+            font-size: 0.85rem;
         }
 
         .spec-label {
             font-weight: 600;
             color: var(--text-light);
-            min-width: 80px;
-            font-size: 0.8rem;
+            min-width: 70px;
+            font-size: 0.75rem;
+        }
+
+        .spec-value {
+            color: var(--text);
+            font-weight: 500;
         }
 
         .action-buttons {
@@ -286,140 +295,6 @@
             border-color: var(--primary);
             color: white;
             transform: translateY(-1px);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--card);
-            border-radius: 12px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-        }
-
-        .modal-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-label {
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--text);
-        }
-
-        .form-input, .form-select, .form-textarea, .ts-control {
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 14px;
-            background: var(--card);
-        }
-
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .file-attachments {
-            background: var(--background);
-            padding: 1.5rem;
-            border-radius: 6px;
-            margin-top: 1.5rem;
-        }
-
-        .file-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .modal-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-        }
-
-        .btn-secondary {
-            background: var(--background);
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: #e2e8f0;
         }
 
         /* Loading */
@@ -464,9 +339,7 @@
             .table-header div:nth-child(3),
             .table-row div:nth-child(3),
             .table-header div:nth-child(4),
-            .table-row div:nth-child(4),
-            .table-header div:nth-child(5),
-            .table-row div:nth-child(5) {
+            .table-row div:nth-child(4) {
                 display: none;
             }
         }
@@ -476,18 +349,14 @@
                 display: none;
             }
             
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .file-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .page-header {
                 flex-direction: column;
                 gap: 1rem;
                 align-items: flex-start;
+            }
+            
+            .specs-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -541,60 +410,155 @@
                 <div class="table-header">
                     <div>PRODUCT</div>
                     <div>CATEGORY</div>
-                    <div>CUSTOMER</div>
                     <div>SPECIFICATIONS</div>
                     <div>ACTIONS</div>
                 </div>
                 <div id="productsContainer">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Loading products...</p>
+                    <!-- Sample Data -->
+                    <div class="table-row">
+                        <td class="product-info">
+                            <h4>D-nib 50 mg for Revacure labels</h4>
+                            <div class="artwork-code">BDR/D-NIB 50mg/L/03</div>
+                        </td>
+                        <td>
+                            <span class="product-category">
+                                <i class="fas fa-tag"></i>
+                                Labels
+                            </span>
+                        </td>
+                        <td>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Paper:</span>
+                                    <span class="spec-value">Cromo</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">GSM:</span>
+                                    <span class="spec-value">75</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Size:</span>
+                                    <span class="spec-value">75 x 30</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Effects:</span>
+                                    <span class="spec-value">Window UV</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Coating:</span>
+                                    <span class="spec-value">UV</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Pasting:</span>
+                                    <span class="spec-value">Side</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Folding:</span>
+                                    <span class="spec-value">-</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-icon" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </div>
+
+                    <div class="table-row">
+                        <td class="product-info">
+                            <h4>Apaluside 60mg Carton</h4>
+                            <div class="artwork-code">NHCAMAXIN/C1</div>
+                        </td>
+                        <td>
+                            <span class="product-category">
+                                <i class="fas fa-tag"></i>
+                                Cartons
+                            </span>
+                        </td>
+                        <td>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Paper:</span>
+                                    <span class="spec-value">Yellow</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">GSM:</span>
+                                    <span class="spec-value">300</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Size:</span>
+                                    <span class="spec-value">105 x 58 x 58</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Effects:</span>
+                                    <span class="spec-value">Embossing</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Coating:</span>
+                                    <span class="spec-value">UV</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Pasting:</span>
+                                    <span class="spec-value">Lock Bottom</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Folding:</span>
+                                    <span class="spec-value">-</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-icon" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Add Product Modal -->
-    <div class="modal" id="productModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Add New Product</h2>
-                <button class="close-modal" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <!-- Form content will be loaded from previous working version -->
-                <div style="text-align: center; padding: 2rem; color: var(--text-light);">
-                    <i class="fas fa-cog fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                    <p>Form loading...</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                <button class="btn btn-primary">Save Product</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/js/tom-select.complete.min.js"></script>
     <script>
-        // This is the modern UI - full functionality will be integrated
-        console.log("Modern PackagePro UI Loaded");
+        // Basic functionality
+        console.log("PackagePro Modern UI Loaded");
         
-        // Basic modal functions
         function openModal() {
-            document.getElementById('productModal').classList.add('active');
+            alert("Add Product modal will open here");
         }
 
-        function closeModal() {
-            document.getElementById('productModal').classList.remove('active');
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('productModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('.table-row');
+            
+            rows.forEach(row => {
+                const productName = row.querySelector('h4').textContent.toLowerCase();
+                const artworkCode = row.querySelector('.artwork-code').textContent.toLowerCase();
+                const category = row.querySelector('.product-category').textContent.toLowerCase();
+                
+                if (productName.includes(searchTerm) || artworkCode.includes(searchTerm) || category.includes(searchTerm)) {
+                    row.style.display = 'grid';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
