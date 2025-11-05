@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PackagePro - Product Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/css/tom-select.css">
     <style>
         * {
             margin: 0;
@@ -321,7 +322,7 @@
             color: var(--text);
         }
 
-        .form-input, .form-select, .form-textarea {
+        .form-input, .form-textarea, .ts-control {
             padding: 0.75rem;
             border: 1px solid var(--border);
             border-radius: 6px;
@@ -329,7 +330,7 @@
             background: var(--card);
         }
 
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
+        .form-input:focus, .form-textarea:focus, .ts-control.focus {
             outline: none;
             border-color: var(--primary);
         }
@@ -430,6 +431,22 @@
             text-align: center;
             padding: 3rem;
             color: var(--text-light);
+        }
+
+        /* Tom Select Customization */
+        .ts-wrapper.multi .ts-control {
+            padding: 0.5rem;
+        }
+
+        .ts-dropdown {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .ts-dropdown .active {
+            background: var(--primary);
+            color: white;
         }
 
         /* Responsive */
@@ -550,101 +567,23 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Category *</label>
-                        <select class="form-select" id="category">
-                            <option value="">Select Category</option>
-                            <option value="Labels">Labels</option>
-                            <option value="Cartons">Cartons</option>
-                            <option value="Inserts">Inserts</option>
-                            <option value="LBL">LBL</option>
-                            <option value="Booklet">Booklet</option>
-                        </select>
+                        <select id="category" placeholder="Select Category or type to add new..."></select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Customer *</label>
-                        <select class="form-select" id="customer">
-                            <option value="">Select Customer</option>
-                            <option value="Grantools">Grantools</option>
-                            <option value="BDR Pharmaceuticals International Pvt. Ltd.">BDR Pharmaceuticals International Pvt. Ltd.</option>
-                            <option value="J B Pharam">J B Pharam</option>
-                            <option value="T M Thakur pharma">T M Thakur pharma</option>
-                        </select>
+                        <select id="customer" placeholder="Select Customer or type to add new..."></select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Paper *</label>
-                        <select class="form-select" id="paper">
-                            <option value="">Select Paper</option>
-                            <option value="Cromo">Cromo</option>
-                            <option value="Yellow">Yellow</option>
-                            <option value="Maplitho">Maplitho</option>
-                            <option value="White">White</option>
-                            <option value="Bible">Bible</option>
-                            <option value="Fasson Fas Pharmaplus">Fasson Fas Pharmaplus</option>
-                            <option value="Art Card">Art Card</option>
-                            <option value="Silver metalic">Silver metalic</option>
-                        </select>
+                        <select id="paper" placeholder="Select Paper or type to add new..."></select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">GSM *</label>
-                        <select class="form-select" id="gsm">
-                            <option value="">Select GSM</option>
-                            <option value="40">40</option>
-                            <option value="45">45</option>
-                            <option value="52">52</option>
-                            <option value="54">54</option>
-                            <option value="58">58</option>
-                            <option value="60">60</option>
-                            <option value="70">70</option>
-                            <option value="75">75</option>
-                            <option value="80">80</option>
-                            <option value="90">90</option>
-                            <option value="100">100</option>
-                            <option value="120">120</option>
-                            <option value="128">128</option>
-                            <option value="170">170</option>
-                            <option value="230">230</option>
-                            <option value="250">250</option>
-                            <option value="280">280</option>
-                            <option value="290">290</option>
-                            <option value="300">300</option>
-                            <option value="320">320</option>
-                            <option value="330">330</option>
-                            <option value="340">340</option>
-                            <option value="350">350</option>
-                            <option value="360">360</option>
-                        </select>
+                        <select id="gsm" placeholder="Select GSM or type to add new..."></select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Print Size</label>
-                        <select class="form-select" id="printSize">
-                            <option value="">Select Print Size</option>
-                            <option value="11.5 x 18">11.5 x 18</option>
-                            <option value="12 x 20">12 x 20</option>
-                            <option value="12 x 22">12 x 22</option>
-                            <option value="12 x 23">12 x 23</option>
-                            <option value="12.5 x 18">12.5 x 18</option>
-                            <option value="12.5 x 19">12.5 x 19</option>
-                            <option value="12.5 x 25">12.5 x 25</option>
-                            <option value="12.66 x 25">12.66 x 25</option>
-                            <option value="13.8 x 15.75">13.8 x 15.75</option>
-                            <option value="14 x 20">14 x 20</option>
-                            <option value="14 x 20.75">14 x 20.75</option>
-                            <option value="14 x 22">14 x 22</option>
-                            <option value="14.66 x 14">14.66 x 14</option>
-                            <option value="14.66 x 25">14.66 x 25</option>
-                            <option value="15 x 20">15 x 20</option>
-                            <option value="15.33 x 18">15.33 x 18</option>
-                            <option value="15.75 x 20.75">15.75 x 20.75</option>
-                            <option value="18 x 23">18 x 23</option>
-                            <option value="18 x 25">18 x 25</option>
-                            <option value="18 x 26">18 x 26</option>
-                            <option value="19 x 25">19 x 25</option>
-                            <option value="20 x 28">20 x 28</option>
-                            <option value="20 x 30">20 x 30</option>
-                            <option value="22 x 28">22 x 28</option>
-                            <option value="23 x 36">23 x 36</option>
-                            <option value="25 x 36">25 x 36</option>
-                            <option value="28 x 41.5">28 x 41.5</option>
-                        </select>
+                        <select id="printSize" placeholder="Select Print Size or type to add new..."></select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Ups</label>
@@ -664,13 +603,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Coating</label>
-                        <select class="form-select" id="coating">
-                            <option value="">Select Coating</option>
-                            <option value="UV">UV</option>
-                            <option value="Aqua">Aqua</option>
-                            <option value="Textured UV">Textured UV</option>
-                            <option value="UV Drip">UV Drip</option>
-                        </select>
+                        <select id="coating" placeholder="Select Coating or type to add new..."></select>
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label">Special Effects</label>
@@ -697,8 +630,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Pasting</label>
-                        <select class="form-select" id="pasting">
-                            <option value="">Select Pasting</option>
+                        <select id="pasting" placeholder="Select Pasting or type to add new...">
                             <option value="side pasting">Side Pasting</option>
                             <option value="lock bottom">Lock Bottom</option>
                         </select>
@@ -709,29 +641,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Construction</label>
-                        <select class="form-select" id="construction">
-                            <option value="">Select Construction</option>
-                            <option value="2 Vertical Folds">2 Vertical Folds</option>
-                            <option value="3 folding">3 folding</option>
-                            <option value="3 vertical + 3 horizontal">3 vertical + 3 horizontal</option>
-                            <option value="Folding">Folding</option>
-                            <option value="Folding - 1 Horizontal + 1 Vertical">Folding - 1 Horizontal + 1 Vertical</option>
-                            <option value="Folding - 2 + 4">Folding - 2 + 4</option>
-                            <option value="Folding - 3 + 3">Folding - 3 + 3</option>
-                            <option value="Folding – 1 + 3">Folding – 1 + 3</option>
-                            <option value="Folding – 1 + 4">Folding – 1 + 4</option>
-                            <option value="Folding – 2 + 1">Folding – 2 + 1</option>
-                            <option value="Folding – 2 + 3">Folding – 2 + 3</option>
-                            <option value="Folding – 2 vertical + 2 horizontal">Folding – 2 vertical + 2 horizontal</option>
-                            <option value="Folding – 3 vertical + 2 horizontal">Folding – 3 vertical + 2 horizontal</option>
-                            <option value="Folding – 1 + 3">Folding – 1 + 3</option>
-                            <option value="Folding – 2 + 3">Folding – 2 + 3</option>
-                            <option value="Folding – 2 vertical + 2 horizontal">Folding – 2 vertical + 2 horizontal</option>
-                            <option value="Folding 3 +3">Folding 3 +3</option>
-                            <option value="Folding 3 Vertical">Folding 3 Vertical</option>
-                            <option value="full Varnish">full Varnish</option>
-                            <option value="Printed Carton on Cyber board with 6 Colour Printing with UV Varnish">Printed Carton on Cyber board with 6 Colour Printing with UV Varnish</option>
-                        </select>
+                        <select id="construction" placeholder="Select Construction or type to add new..."></select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Actual GSM USED</label>
@@ -743,32 +653,11 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Delivery Address</label>
-                        <select class="form-select" id="deliveryAddress">
-                            <option value="">Select Delivery Address</option>
-                            <option value="Bajaj Healthcar Ltd, RS 1818 Manjusar-Savli Road., At & Post Manjusar., Tal - Savli, Vadodara">Bajaj Healthcar Ltd, RS 1818 Manjusar-Savli Road., At & Post Manjusar., Tal - Savli, Vadodara</option>
-                            <option value="BDR Pharmaceuticals Int'l Pvt. Ltd., R.S. NO-578, NEAR EFFLUENT CHANEL, VILLAGE LUNA, PADRA, VADODRA 391440, Gujarat India.">BDR Pharmaceuticals Int'l Pvt. Ltd., R.S. NO-578, NEAR EFFLUENT CHANEL, VILLAGE LUNA, PADRA, VADODRA 391440, Gujarat India.</option>
-                            <option value="BDR PHARMACEUTICALS INTERNATIONAL PVT. LTD , Survey No. 51/1, At Vanseti Village, PO: Tajpura, Taluka – Halol, Dist. Panchamahals.">BDR PHARMACEUTICALS INTERNATIONAL PVT. LTD , Survey No. 51/1, At Vanseti Village, PO: Tajpura, Taluka – Halol, Dist. Panchamahals.</option>
-                            <option value="Indasi lifescience Pvt Ltd, Plot no 73 to 76 Silver Industrial Estate., Bhimpore, Daman 396210">Indasi lifescience Pvt Ltd, Plot no 73 to 76 Silver Industrial Estate., Bhimpore, Daman 396210</option>
-                            <option value="Inject Care Parenterals Pvt. Ltd., Plot No. 130, GIDC Vapi, Silvassa Road, Vapi, Gujarat - 396195">Inject Care Parenterals Pvt. Ltd., Plot No. 130, GIDC Vapi, Silvassa Road, Vapi, Gujarat - 396195</option>
-                        </select>
+                        <select id="deliveryAddress" placeholder="Select Delivery Address or type to add new..."></select>
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label">Specification</label>
-                        <select class="form-select" id="specification">
-                            <option value="">Select Specification</option>
-                            <option value="ITC Saffire board with 4 colour printing.">ITC Saffire board with 4 colour printing.</option>
-                            <option value="ITC Saffire white board with 4 colour printing.">ITC Saffire white board with 4 colour printing.</option>
-                            <option value="Printed carton on ITC carte lumina with 4 special colour printing.">Printed carton on ITC carte lumina with 4 special colour printing.</option>
-                            <option value="Printed carton on ITC Cyber board">Printed carton on ITC Cyber board</option>
-                            <option value="Printed carton on ITC Cyber board with 3 colour printing.">Printed carton on ITC Cyber board with 3 colour printing.</option>
-                            <option value="Printed carton on ITC Cyber board with 3 special Pantone colour printing.">Printed carton on ITC Cyber board with 3 special Pantone colour printing.</option>
-                            <option value="Printed carton on ITC Cyber board with 4 colour printing.">Printed carton on ITC Cyber board with 4 colour printing.</option>
-                            <option value="Printed carton on ITC Cyber board with 4 special Pantone colour printing.">Printed carton on ITC Cyber board with 4 special Pantone colour printing.</option>
-                            <option value="Printed carton on ITC Cyber board with 5 special Pantone colour printing.">Printed carton on ITC Cyber board with 5 special Pantone colour printing.</option>
-                            <option value="Printed carton on ITC Cyber board with 6 special Pantone colour printing.">Printed carton on ITC Cyber board with 6 special Pantone colour printing.</option>
-                            <option value="Printed carton on ITC Cyber board with 7 special Pantone colour printing.">Printed carton on ITC Cyber board with 7 special Pantone colour printing.</option>
-                            <option value="Printed carton on ITC Cyber board with 9 special colour printing.">Printed carton on ITC Cyber board with 9 special colour printing.</option>
-                        </select>
+                        <select id="specification" placeholder="Select Specification or type to add new..."></select>
                     </div>
                 </div>
 
@@ -805,6 +694,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/js/tom-select.complete.min.js"></script>
     <script>
         const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1yGROR0u7tLBsK34GnS0rMnOeMpAWT-izB1jD97LgyZo/gviz/tq?tqx=out:json';
 
@@ -812,6 +702,104 @@
         let filteredProducts = [];
         let editMode = false;
         let currentEditId = null;
+        let tomSelectInstances = {};
+
+        // Define dropdown options from your Excel
+        const dropdownOptions = {
+            category: ['Labels', 'Cartons', 'Inserts', 'LBL', 'Booklet'],
+            customer: ['Grantools', 'BDR Pharmaceuticals International Pvt. Ltd.', 'J B Pharam', 'T M Thakur pharma'],
+            paper: ['Cromo', 'Yellow', 'Maplitho', 'White', 'Bible', 'Fasson Fas Pharmaplus', 'Art Card', 'Silver metalic'],
+            gsm: ['40', '45', '52', '54', '58', '60', '70', '75', '80', '90', '100', '120', '128', '170', '230', '250', '280', '290', '300', '320', '330', '340', '350', '360'],
+            printSize: ['11.5 x 18', '12 x 20', '12 x 22', '12 x 23', '12.5 x 18', '12.5 x 19', '12.5 x 25', '12.66 x 25', '13.8 x 15.75', '14 x 20', '14 x 20.75', '14 x 22', '14.66 x 14', '14.66 x 25', '15 x 20', '15.33 x 18', '15.75 x 20.75', '18 x 23', '18 x 25', '18 x 26', '19 x 25', '20 x 28', '20 x 30', '22 x 28', '23 x 36', '25 x 36', '28 x 41.5'],
+            coating: ['UV', 'Aqua', 'Textured UV', 'UV Drip'],
+            construction: ['2 Vertical Folds', '3 folding', '3 vertical + 3 horizontal', 'Folding', 'Folding - 1 Horizontal + 1 Vertical', 'Folding - 2 + 4', 'Folding - 3 + 3', 'Folding – 1 + 3', 'Folding – 1 + 4', 'Folding – 2 + 1', 'Folding – 2 + 3', 'Folding – 2 vertical + 2 horizontal', 'Folding – 3 vertical + 2 horizontal', 'Folding 3 +3', 'Folding 3 Vertical', 'full Varnish', 'Printed Carton on Cyber board with 6 Colour Printing with UV Varnish'],
+            deliveryAddress: [
+                'Bajaj Healthcar Ltd, RS 1818 Manjusar-Savli Road., At & Post Manjusar., Tal - Savli, Vadodara',
+                'BDR Pharmaceuticals Int\'l Pvt. Ltd., R.S. NO-578, NEAR EFFLUENT CHANEL, VILLAGE LUNA, PADRA, VADODRA 391440, Gujarat India.',
+                'BDR PHARMACEUTICALS INTERNATIONAL PVT. LTD , Survey No. 51/1, At Vanseti Village, PO: Tajpura, Taluka – Halol, Dist. Panchamahals.',
+                'Indasi lifescience Pvt Ltd, Plot no 73 to 76 Silver Industrial Estate., Bhimpore, Daman 396210',
+                'Inject Care Parenterals Pvt. Ltd., Plot No. 130, GIDC Vapi, Silvassa Road, Vapi, Gujarat - 396195',
+                'J B PHARAM -NEW MUMBAI WH',
+                'J.Duncan Healthcare Pvt. Ltd, Plot No. 65- 66- 67-Phase II, Atgaon Industrial Complex, Atgaon Taluka, Shahapur, Dist - Thane, Atgaon, Maharashtra 421601',
+                'Kamla Lifesciences Ltd (L.L), G-84/1- Tarapur MIDC, Boisar Palghar - 401506',
+                'Khandelwal Laboratories Pvt Ltd, B-1 Wagle industrial Estate ,Thane 400604',
+                'LYKA LABS LIMITED - LL, Plot No. 4801/B, 4802/A-GIDC Industrial Estate, Ankleshwar 393002 Gujarat',
+                'Mepromax Lifesciences Pvt. Ltd., 16â€ Pharmacity, Industrial Area, Selaqui, Dehradunâ€ 248197 (Uttarakhand)',
+                'Revacure Lifesciences LLP- LL, Plot No. 58 to 67- Sector B-1, Umariya Dungaria Industrial Area, M.P. AKVN Village- Umariya- Dungaria, Tehsil- Shahpura, District- Jabalpur, 482 003',
+                'Samrudh Pharmaceuticals Pvt. Ltd., J - 174, MIDC Tarapur, Boisar, Thane 401506, Maharashtra India.',
+                'Sovereign Pharma, Survey No.46/1-4, Village Kadaiya, Post : Bhimpore., Nani Daman - 396 210.',
+                'T M Thakur pharma',
+                'VHB Medisciences Ltd., Plot No - 20-22 & 49-51, IIE Sector - 5. Pant Nagar, Rudrapur - 263153 248197(Uttarakhand)'
+            ],
+            specification: [
+                'ITC Saffire board with 4 colour printing.',
+                'ITC Saffire white board with 4 colour printing.',
+                'Printed carton on ITC carte lumina with 4 special colour printing.',
+                'Printed carton on ITC Cyber board',
+                'Printed carton on ITC Cyber board with 3 colour printing.',
+                'Printed carton on ITC Cyber board with 3 special Pantone colour printing.',
+                'Printed carton on ITC Cyber board with 4 colour printing.',
+                'Printed carton on ITC Cyber board with 4 special Pantone colour printing.',
+                'Printed carton on ITC Cyber board with 5 special Pantone colour printing.',
+                'Printed carton on ITC Cyber board with 6 special Pantone colour printing.',
+                'Printed carton on ITC Cyber board with 7 special Pantone colour printing.',
+                'Printed carton on ITC Cyber board with 9 special colour printing.',
+                'Printed carton on ITC Cyber XL board with UV varnish with 4 special Pantone colour printing.',
+                'Printed carton on ITC Saffire board with 2 special Pantone colour printing.',
+                'Printed carton on ITC Saffire board with 3 special colour printing with Foiling & raised UV Window Aqua Varnish for batch coding',
+                'Printed carton on ITC Saffire board with 3 special colour printing with Window Aqua Varnish for batch coding.',
+                'Printed carton on ITC Saffire board with 3 special Pantone colour printing.',
+                'Printed carton on ITC Saffire board with 4 colour printing with Window Aqua Varnish for batch coding.',
+                'Printed carton on ITC Saffire board with 4 colour printing.',
+                'Printed carton on ITC Saffire board with 4 colour printing.+ embossing on main pannels',
+                'Printed carton on ITC Saffire board with 4 special Pantone colour printing.',
+                'Printed carton on ITC Saffire board with 4 special Pantone colour printing.+spot uv & embossing of brand name on main pannel',
+                'Printed carton on ITC Saffire board with 5 special Pantone colour printing.',
+                'Printed carton on ITC Saffire board with 7 special Pantone colour printing.',
+                'Printed carton on ITC Saffire board with 8 special Pantone colour printing.',
+                'Printed carton on ITC Saffire with 6 special Pantone colour printing.',
+                'Printed carton on ITC safire board with 7 special Pantone colour printing.',
+                'Printed insert on Bible paper.',
+                'Printed insert on Maplitho paper.',
+                'Printed Label on Chromo paper Size + - 3mm with 4 colour printing.',
+                'Printed Label on Chromo paper Size + - 3mm with 4 colour printing. with silver foilling',
+                'Printed Label on Chromo paper with 3 special Pantone colour printing.',
+                'Printed Label on Chromo paper with 4 special Pantone colour printing.',
+                'Printed Label on Chromo paper with 5 special Pantone colour printing.',
+                'Printed Leaflet on Art Paper',
+                'Printed Leaflet on Maplitho Paper',
+                'Printed on Ultima board, 4 colour printing, Drip off & Embossing on brand name - front and back panel.',
+                'Printed Carton on silver Metpet with 4 colour +white all uv ink with brand name & Logo embossing'
+            ]
+        };
+
+        // Initialize Tom Select dropdowns
+        function initializeDropdowns() {
+            const dropdowns = ['category', 'customer', 'paper', 'gsm', 'printSize', 'coating', 'construction', 'deliveryAddress', 'specification'];
+            
+            dropdowns.forEach(field => {
+                tomSelectInstances[field] = new TomSelect(`#${field}`, {
+                    options: dropdownOptions[field].map(opt => ({ value: opt, text: opt })),
+                    items: [],
+                    create: true,
+                    sortField: {
+                        field: "text",
+                        direction: "asc"
+                    },
+                    maxItems: 1,
+                    placeholder: `Select ${field.replace(/([A-Z])/g, ' $1')} or type to add new...`
+                });
+            });
+
+            // Pasting dropdown (simple)
+            tomSelectInstances.pasting = new TomSelect('#pasting', {
+                options: [
+                    { value: 'side pasting', text: 'Side Pasting' },
+                    { value: 'lock bottom', text: 'Lock Bottom' }
+                ],
+                maxItems: 1
+            });
+        }
 
         // Load products from Google Sheets
         async function loadProducts() {
@@ -824,8 +812,8 @@
                 allProducts = rows.slice(1).map((row, index) => {
                     const cells = row.c;
                     return {
-                        id: index + 1, // Auto-generated unique ID
-                        name: cells[1]?.v || 'No Name',
+                        id: index + 1,
+                        name: cells[1]?.v || '',
                         category: cells[2]?.v || '',
                         customer: cells[3]?.v || '',
                         paper: cells[4]?.v || '',
@@ -845,14 +833,35 @@
                         artworkCode: cells[18]?.v || '',
                         deliveryAddress: cells[19]?.v || ''
                     };
-                });
+                }).filter(product => product.name); // Remove empty products
 
                 filteredProducts = [...allProducts];
                 renderProducts();
+                
+                // Add loaded values to dropdowns
+                updateDropdownsFromData();
+                
             } catch (error) {
                 console.error('Error loading products:', error);
                 showError();
             }
+        }
+
+        // Update dropdowns with values from loaded data
+        function updateDropdownsFromData() {
+            const fields = ['category', 'customer', 'paper', 'gsm', 'printSize', 'coating', 'construction', 'deliveryAddress', 'specification'];
+            
+            fields.forEach(field => {
+                const uniqueValues = [...new Set(allProducts.map(p => p[field]).filter(Boolean))];
+                uniqueValues.forEach(value => {
+                    if (!dropdownOptions[field].includes(value)) {
+                        dropdownOptions[field].push(value);
+                        if (tomSelectInstances[field]) {
+                            tomSelectInstances[field].addOption({ value: value, text: value });
+                        }
+                    }
+                });
+            });
         }
 
         // Render products to the table
@@ -889,6 +898,7 @@
                         ${product.printSize ? `<div class="spec-item">Size: ${escapeHtml(product.printSize)}</div>` : ''}
                         ${product.coating ? `<div class="spec-item">Coating: ${escapeHtml(product.coating)}</div>` : ''}
                         ${product.construction ? `<div class="spec-item">Construction: ${escapeHtml(product.construction)}</div>` : ''}
+                        ${product.specification ? `<div class="spec-item">Spec: ${escapeHtml(product.specification)}</div>` : ''}
                     </div>
                     <div class="action-buttons">
                         <button class="btn-icon" title="Edit" onclick="editProduct(${product.id})">
@@ -920,23 +930,18 @@
 
         function resetForm() {
             document.getElementById('productName').value = '';
-            document.getElementById('category').value = '';
-            document.getElementById('customer').value = '';
-            document.getElementById('paper').value = '';
-            document.getElementById('gsm').value = '';
-            document.getElementById('printSize').value = '';
             document.getElementById('ups').value = '';
             document.getElementById('dimension').value = '';
             document.getElementById('ink').value = '';
             document.getElementById('plateNo').value = '';
-            document.getElementById('coating').value = '';
-            document.getElementById('pasting').value = '';
             document.getElementById('foldingDim').value = '';
-            document.getElementById('construction').value = '';
             document.getElementById('actualGsmUsed').value = '';
             document.getElementById('artworkCode').value = '';
-            document.getElementById('deliveryAddress').value = '';
-            document.getElementById('specification').value = '';
+            
+            // Clear all dropdowns
+            Object.values(tomSelectInstances).forEach(instance => {
+                instance.clear();
+            });
             
             // Clear checkboxes
             document.querySelectorAll('input[name="specialEffects"]').forEach(checkbox => {
@@ -947,25 +952,25 @@
         function saveProduct() {
             const productData = {
                 name: document.getElementById('productName').value,
-                category: document.getElementById('category').value,
-                customer: document.getElementById('customer').value,
-                paper: document.getElementById('paper').value,
-                gsm: document.getElementById('gsm').value,
-                printSize: document.getElementById('printSize').value,
+                category: tomSelectInstances.category.getValue(),
+                customer: tomSelectInstances.customer.getValue(),
+                paper: tomSelectInstances.paper.getValue(),
+                gsm: tomSelectInstances.gsm.getValue(),
+                printSize: tomSelectInstances.printSize.getValue(),
                 ups: document.getElementById('ups').value,
                 dimension: document.getElementById('dimension').value,
                 ink: document.getElementById('ink').value,
                 plateNo: document.getElementById('plateNo').value,
-                coating: document.getElementById('coating').value,
+                coating: tomSelectInstances.coating.getValue(),
                 specialEffects: Array.from(document.querySelectorAll('input[name="specialEffects"]:checked'))
                     .map(cb => cb.value).join(', '),
-                pasting: document.getElementById('pasting').value,
+                pasting: tomSelectInstances.pasting.getValue(),
                 foldingDim: document.getElementById('foldingDim').value,
-                construction: document.getElementById('construction').value,
-                specification: document.getElementById('specification').value,
+                construction: tomSelectInstances.construction.getValue(),
+                specification: tomSelectInstances.specification.getValue(),
                 actualGsmUsed: document.getElementById('actualGsmUsed').value,
                 artworkCode: document.getElementById('artworkCode').value,
-                deliveryAddress: document.getElementById('deliveryAddress').value
+                deliveryAddress: tomSelectInstances.deliveryAddress.getValue()
             };
 
             if (!productData.name || !productData.category || !productData.customer || !productData.paper || !productData.gsm) {
@@ -1001,23 +1006,21 @@
 
             // Fill form with product data
             document.getElementById('productName').value = product.name;
-            document.getElementById('category').value = product.category;
-            document.getElementById('customer').value = product.customer;
-            document.getElementById('paper').value = product.paper;
-            document.getElementById('gsm').value = product.gsm;
-            document.getElementById('printSize').value = product.printSize;
-            document.getElementById('ups').value = product.ups;
-            document.getElementById('dimension').value = product.dimension;
-            document.getElementById('ink').value = product.ink;
-            document.getElementById('plateNo').value = product.plateNo;
-            document.getElementById('coating').value = product.coating;
-            document.getElementById('pasting').value = product.pasting;
-            document.getElementById('foldingDim').value = product.foldingDim;
-            document.getElementById('construction').value = product.construction;
-            document.getElementById('actualGsmUsed').value = product.actualGsmUsed;
-            document.getElementById('artworkCode').value = product.artworkCode;
-            document.getElementById('deliveryAddress').value = product.deliveryAddress;
-            document.getElementById('specification').value = product.specification;
+            document.getElementById('ups').value = product.ups || '';
+            document.getElementById('dimension').value = product.dimension || '';
+            document.getElementById('ink').value = product.ink || '';
+            document.getElementById('plateNo').value = product.plateNo || '';
+            document.getElementById('foldingDim').value = product.foldingDim || '';
+            document.getElementById('actualGsmUsed').value = product.actualGsmUsed || '';
+            document.getElementById('artworkCode').value = product.artworkCode || '';
+
+            // Set dropdown values
+            const dropdowns = ['category', 'customer', 'paper', 'gsm', 'printSize', 'coating', 'construction', 'deliveryAddress', 'specification', 'pasting'];
+            dropdowns.forEach(field => {
+                if (product[field] && tomSelectInstances[field]) {
+                    tomSelectInstances[field].setValue(product[field]);
+                }
+            });
 
             // Handle special effects checkboxes
             if (product.specialEffects) {
@@ -1057,6 +1060,7 @@
 
         // Utility function to escape HTML
         function escapeHtml(text) {
+            if (!text) return '';
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
@@ -1077,10 +1081,10 @@
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
             filteredProducts = allProducts.filter(product =>
-                product.name.toLowerCase().includes(searchTerm) ||
-                product.customer.toLowerCase().includes(searchTerm) ||
-                product.category.toLowerCase().includes(searchTerm) ||
-                product.artworkCode.toLowerCase().includes(searchTerm)
+                (product.name && product.name.toLowerCase().includes(searchTerm)) ||
+                (product.customer && product.customer.toLowerCase().includes(searchTerm)) ||
+                (product.category && product.category.toLowerCase().includes(searchTerm)) ||
+                (product.artworkCode && product.artworkCode.toLowerCase().includes(searchTerm))
             );
             renderProducts();
         });
@@ -1092,8 +1096,11 @@
             }
         });
 
-        // Load products when page loads
-        loadProducts();
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDropdowns();
+            loadProducts();
+        });
     </script>
 </body>
 </html>
