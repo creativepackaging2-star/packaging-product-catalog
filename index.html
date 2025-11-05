@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packaging Product Catalog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* Filters */
+        .filters-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 16px;
+            width: 100%;
+            color: #1e293b;
+        }
+
+        .search-box input::placeholder {
+            color: #64748b;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .filter select {
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 14px;
+            color: #1e293b;
+            cursor: pointer;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+
+        .card-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge.category {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            gap: 12px;
+        }
+
+        .info-row label {
+            font-weight: 600;
+            color: #64748b;
+            min-width: 100px;
+            font-size: 14px;
+        }
+
+        .info-row span {
+            color: #1e293b;
+            flex: 1;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .info-row.full-width {
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-row.full-width label {
+            min-width: auto;
+        }
+
+        .address {
+            font-size: 13px !important;
+            line-height: 1.4;
+            color: #475569 !important;
+            text-align: left !important;
+        }
+
+        .expanded-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .expand-btn {
+            width: 100%;
+            padding: 8px 16px;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            color: #475569;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+        }
+
+        .expand-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #64748b;
+        }
+
+        .empty-state h3 {
+            margin: 1rem 0 0.5rem;
+            color: #475569;
+        }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+            gap: 1rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-left: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .info-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+            
+            .info-row label {
+                min-width: auto;
+            }
+            
+            .info-row span {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-box"></i>
+                        <h1>Packaging Products</h1>
+                    </div>
+                    <p class="subtitle">Professional packaging solutions catalog</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="filters-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search products or customers...">
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter">
+                        <i class="fas fa-filter"></i>
+                        <select id="categoryFilter">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+
+                    <div class="filter">
+                        <i class="fas fa-users"></i>
+                        <select id="customerFilter">
+                            <option value="">All Customers</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="productsContainer" class="products-grid">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading products...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1yGROR0u7tLBsK34GnS0rMnOeMpAWT-izB1jD97LgyZo/gviz/tq?tqx=out:json';
+
+        let allProducts = [];
+        let filteredProducts = [];
+
+        // Load products from Google Sheets
+        async function loadProducts() {
+            try {
+                const response = await fetch(GOOGLE_SHEET_URL);
+                const text = await response.text();
+                const json = JSON.parse(text.substring(47).slice(0, -2));
+                
+                const rows = json.table.rows;
+                allProducts = rows.slice(1).map(row => {
+                    const cells = row.c;
+                    return {
+                        id: cells[0]?.v || '',
+                        name: cells[1]?.v || 'No Name',
+                        category: cells[2]?.v || '',
+                        customer: cells[3]?.v || '',
+                        paper: cells[4]?.v || '',
+                        gsm: cells[5]?.v || '',
+                        size: cells[6]?.v || '',
+                        coating: cells[11]?.v || '',
+                        construction: cells[15]?.v || '',
+                        specification: cells[16]?.v || '',
+                        deliveryAddress: cells[19]?.v || ''
+                    };
+                });
+
+                filteredProducts = [...allProducts];
+                renderProducts();
+                populateFilters();
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('productsContainer').innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 48px;"></i>
+                        <h3>Error loading products</h3>
+                        <p>Please check your internet connection and try again</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Populate filter dropdowns
+        function populateFilters() {
+            const categories = [...new Set(allProducts.map(p => p.category).filter(Boolean))];
+            const customers = [...new Set(allProducts.map(p => p.customer).filter(Boolean))];
+
+            const categoryFilter = document.getElementById('categoryFilter');
+            const customerFilter = document.getElementById('customerFilter');
+
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categoryFilter.appendChild(option);
+            });
+
+            customers.forEach(customer => {
+                const option = document.createElement('option');
+                option.value = customer;
+                option.textContent = customer;
+                customerFilter.appendChild(option);
+            });
+        }
+
+        // Filter products based on search and filters
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedCategory = document.getElementById('categoryFilter').value;
+            const selectedCustomer = document.getElementById('customerFilter').value;
+
+            filteredProducts = allProducts.filter(product => {
+                const matchesSearch = !searchTerm || 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.customer.toLowerCase().includes(searchTerm);
+
+                const matchesCategory = !selectedCategory || product.category === selectedCategory;
+                const matchesCustomer = !selectedCustomer || product.customer === selectedCustomer;
+
+                return matchesSearch && matchesCategory && matchesCustomer;
+            });
+
+            renderProducts();
+        }
+
+        // Render products to the page
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            
+            if (filteredProducts.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-box" style="font-size: 48px;"></i>
+                        <h3>No products found</h3>
+                        <p>Try adjusting your search or filters</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredProducts.map(product => `
+                <div class="product-card">
+                    <div class="card-header" onclick="toggleProductDetails(this)">
+                        <h3>${escapeHtml(product.name)}</h3>
+                        <div class="badges">
+                            ${product.category ? `
+                                <span class="badge category">
+                                    <i class="fas fa-tag"></i>
+                                    ${escapeHtml(product.category)}
+                                </span>
+                            ` : ''}
+                        </div>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="info-row">
+                            <label>Customer:</label>
+                            <span>${escapeHtml(product.customer || 'Not specified')}</span>
+                        </div>
+
+                        ${product.paper ? `
+                            <div class="info-row">
+                                <label>Paper:</label>
+                                <span>${escapeHtml(product.paper)}</span>
+                            </div>
+                        ` : ''}
+
+                        ${product.gsm ? `
+                            <div class="info-row">
+                                <label>GSM:</label>
+                                <span>${escapeHtml(product.gsm)}</span>
+                            </div>
+                        ` : ''}
+
+                        <div class="expanded-details" style="display: none;">
+                            ${product.size ? `
+                                <div class="info-row">
+                                    <label>Size:</label>
+                                    <span>${escapeHtml(product.size)}</span>
+                                </div>
+                            ` : ''}
+
+                            ${product.coating ? `
+                                <div class="info-row">
+                                    <label>Coating:</label>
+                                    <span>${escapeHtml(product.coating)}</span>
+                                </div>
+                            ` : ''}
+
+                            ${product.construction ? `
+                                <div class="info-row">
+                                    <label>Construction:</label>
+                                    <span>${escapeHtml(product.construction)}</span>
+                                </div>
+                            ` : ''}
+
+                            ${product.specification ? `
+                                <div class="info-row full-width">
+                                    <label>Specification:</label>
+                                    <span>${escapeHtml(product.specification)}</span>
+                                </div>
+                            ` : ''}
+
+                            ${product.deliveryAddress ? `
+                                <div class="info-row full-width">
+                                    <label>Delivery Address:</label>
+                                    <span class="address">${escapeHtml(product.deliveryAddress)}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <button class="expand-btn" onclick="toggleProductDetails(this.parentElement.parentElement)">
+                            Show More
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Toggle product details expansion
+        function toggleProductDetails(card) {
+            const header = card.querySelector('.card-header');
+            const details = card.querySelector('.expanded-details');
+            const button = card.querySelector('.expand-btn');
+            
+            if (details.style.display === 'none') {
+                details.style.display = 'block';
+                button.textContent = 'Show Less';
+                card.classList.add('expanded');
+            } else {
+                details.style.display = 'none';
+                button.textContent = 'Show More';
+                card.classList.remove('expanded');
+            }
+        }
+
+        // Utility function to escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterProducts);
+        document.getElementById('categoryFilter').addEventListener('change', filterProducts);
+        document.getElementById('customerFilter').addEventListener('change', filterProducts);
+
+        // Load products when page loads
+        loadProducts();
+    </script>
+</body>
+</html>
